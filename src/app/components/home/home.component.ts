@@ -1,6 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {TodolistService} from "../../service/todolist.service";
 import {ToDoListDTO} from "../../models/api/ToDoListDTO";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-home',
@@ -25,7 +26,11 @@ export class HomeComponent implements OnInit,OnDestroy{
 
   }
 
-  constructor(private todoListService : TodolistService){
+  constructor(private todoListService : TodolistService,private router: Router){
+  }
+
+  navigateToUpdate(todolist : any) {
+    this.router.navigate(['/update', todolist.id]);
   }
 
 }

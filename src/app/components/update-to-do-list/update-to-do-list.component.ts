@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {TodolistService} from "../../service/todolist.service";
 import {ToDoListDTO} from "../../models/api/ToDoListDTO";
 import {Message} from "primeng/api";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-update-to-do-list',
@@ -11,6 +12,7 @@ import {Message} from "primeng/api";
 export class UpdateToDoListComponent implements OnInit, OnDestroy {
 
   todolist : ToDoListDTO = {
+
     name : "",
     description : "",
     status : "",
@@ -20,14 +22,22 @@ export class UpdateToDoListComponent implements OnInit, OnDestroy {
   id = 3;
 
   messages : Message[] = [];
-  constructor(private todoListService : TodolistService) { }
+  constructor(private todoListService : TodolistService,private router : Router, private route : ActivatedRoute ) { }
 
   ngOnInit(): void {
     this.messages = [{}];
 
-    this.todoListService.getTodoListById(this.id).subscribe({
-      next:(data)=>{
-        this.todolist=data;
+    this.route.params.subscribe({
+      next:(params)=>{
+        this.id=params['id'];
+        this.todoListService.getTodoListById(this.id.valueOf()).subscribe({
+          next:(data)=>{
+            this.todolist=data;
+          },
+          error:(err)=>{
+            console.log(err);
+          }
+        });
       }
     });
 
@@ -36,7 +46,7 @@ export class UpdateToDoListComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
   }
 
-  updateToDoList(){
+   updateToDoList(){
 
     this.todoListService.updateTodoList(this.todolist).subscribe({
       next:(data)=>{

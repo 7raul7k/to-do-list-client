@@ -1,6 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {TodolistService} from "../../service/todolist.service";
 import {Message} from "primeng/api";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -29,7 +30,7 @@ export class NewToDoListComponent implements OnInit,OnDestroy{
 
 
 
-  constructor(private todoListService : TodolistService){
+  constructor(private todoListService : TodolistService ,private router: Router){
   }
 
   save(){
@@ -45,6 +46,8 @@ export class NewToDoListComponent implements OnInit,OnDestroy{
     this.todoListService.addTodoList(todolistDTO).subscribe({
       next: (data) => {
         this.messages.push({severity: 'success', summary: 'Success', detail: 'ToDoList was added'});
+
+        this.router.navigate(['/']);
 
 
       }
