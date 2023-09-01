@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="form-container">
+
+    <h1>Create new Book</h1>
+
+    <p>
+      <label for="name">Name</label>
+      <input name ="name" type="text" id="name" [(ngModel)]="nameValue">
+    </p>
+
+    <p>
+      <label for="description">Description</label>
+      <input name ="description" type="text" id="description" [(ngModel)]="descriptionValue" >
+    </p>
+
+    <p>
+      <label for="priority">Priority</label>
+      <input name ="priority" type="text" id="priority" [(ngModel)]="priorityValue">
+    </p>
+
+    <p>
+      <label for="status">Status</label>
+      <input name ="status" type="text" id="status" [(ngModel)]="statusValue" >
+    </p>
+
+    <p>
+      <label for="deadline">Deadline</label>
+      <input name ="deadline" type="text" id="deadline" [(ngModel)]="deadlineValue" >
+    </p>
+
+
+  </div>
+
+  <div class="buttons-container">
+
+    <p>  <button class="cancel">Cancel</button> </p>
+
+    <p><button class="add-movie" (click)="save()">Add Movie</button></p>
+  </div>
+</div>
+
+<div *ngIf="messages.length>0">
+  <p-messages [(value)]="messages" [enableService]="false" [closable]="true"></p-messages>
+
+</div>
