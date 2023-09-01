@@ -9,12 +9,14 @@ import { NewToDoListComponent } from './components/new-to-do-list/new-to-do-list
 import {FormsModule} from "@angular/forms";
 import {MessagesModule} from "primeng/messages";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { UpdateToDoListComponent } from './components/update-to-do-list/update-to-do-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    NewToDoListComponent
+    NewToDoListComponent,
+    UpdateToDoListComponent
   ],
   imports: [
     BrowserModule,

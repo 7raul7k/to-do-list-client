@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="form-container">
+
+    <h1>Update Movie</h1>
+    <p>
+      <label for="name">Name</label>
+      <input name ="name" type="text" id="name" [(ngModel)]="todolist.name" >
+    </p>
+
+   <p>
+     <label for ="description">Description</label>
+      <input name ="description" type="text" id="description" [(ngModel)]="todolist.description" >
+   </p>
+
+    <p>
+      <label for ="status">Status</label>
+      <input name ="status" type="text" id="status" [(ngModel)]="todolist.status">
+    </p>
+
+    <p>
+      <label for ="priority">Priority</label>
+      <input name ="priority" type="text" id="priority" [(ngModel)]="todolist.priority">
+    </p>
+
+    <p>
+      <label for ="deadline">Deadline</label>
+      <input name ="deadline" type="text" id="deadline" [(ngModel)]="todolist.deadline">
+    </p>
+
+  </div>
+
+  <div class="buttons-container">
+
+    <p>  <button class="cancel">Cancel</button> </p>
+
+    <p><button class="update-movie" (click)="updateToDoList()" type="submit">Update Movie</button></p>
+
+    <p><button class="delete-movie" (click)="deleteToDoList()">Delete Movie</button></p>
+  </div>
+</div>
+
+<div *ngIf="messages.length>0">
+  <p-messages [(value)]="messages" [enableService]="false" [closable]="true"></p-messages>
+
+</div>
