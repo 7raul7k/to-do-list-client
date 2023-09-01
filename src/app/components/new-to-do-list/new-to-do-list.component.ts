@@ -33,6 +33,7 @@ export class NewToDoListComponent implements OnInit,OnDestroy{
   }
 
   save(){
+    this.checkValidation();
     let todolistDTO = {
       name:this.nameValue,
       description:this.descriptionValue,
@@ -48,6 +49,24 @@ export class NewToDoListComponent implements OnInit,OnDestroy{
 
       }
     });
+  }
+
+  checkValidation(){
+    if(this.nameValue==""){
+      this.messages.push({severity:'error', summary:'Error', detail:'Name is required'});
+    }
+    if(this.descriptionValue==""){
+      this.messages.push({severity:'error', summary:'Error', detail:'Description is required'});
+    }
+    if(this.statusValue==""){
+      this.messages.push({severity:'error', summary:'Error', detail:'Status is required'});
+    }
+    if(this.priorityValue==""){
+      this.messages.push({severity:'error', summary:'Error', detail:'Priority is required'});
+    }
+    if(this.deadlineValue==""){
+      this.messages.push({severity:'error', summary:'Error', detail:'Deadline is required'});
+    }
   }
 
 }
