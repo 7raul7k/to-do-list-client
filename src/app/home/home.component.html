@@ -1,0 +1,37 @@
+<header class="header-container">
+
+  <ul class="nav-container">
+    <button class="create-button">Create button</button>
+  </ul>
+</header>
+
+
+
+<div class="cards-container" >
+
+  <div class="card-container" *ngFor="let todo of todolist">
+
+    <section class="title-container">
+      <label for="name" id="name">Name</label>
+      <h2 class="name">{{todo.name}}</h2>
+    </section>
+    <section class="title-container">
+      <label for="description" id="description">Description</label>
+      <h2 class="description">{{todo.description}}</h2>
+    </section>
+    <section class="title-container">
+      <label for="status" id="status">Status</label>
+      <h2 class="status">{{todo.status}}</h2>
+    </section>
+    <section class="title-container">
+      <label for="deadline" id="deadline">Deadline</label>
+      <h2 class="deadline">{{todo.deadline}}</h2>
+    </section>
+    <section class="title-container">
+      <label for="priority" id="priority">Priority</label>
+      <h2 class="priority">{{todo.priority}}</h2>
+    </section>
+
+  </div>
+
+</div>
