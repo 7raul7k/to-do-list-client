@@ -16,6 +16,10 @@ export class TodolistService implements OnInit, OnDestroy{
   return this.http.get<ToDoListDTO[]>(this.url + "/all").pipe(catchError(this.handleError));
   }
 
+  addTodoList(todoListDTO : ToDoListDTO):Observable<ToDoListDTO>{
+    return this.http.post<ToDoListDTO>(this.url + "/add", todoListDTO).pipe(catchError(this.handleError));
+  }
+
   ngOnDestroy(): void {
 
   }

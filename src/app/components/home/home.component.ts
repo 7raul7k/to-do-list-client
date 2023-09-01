@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {TodolistService} from "../service/todolist.service";
-import {ToDoListDTO} from "../models/api/ToDoListDTO";
+import {TodolistService} from "../../service/todolist.service";
+import {ToDoListDTO} from "../../models/api/ToDoListDTO";
 
 @Component({
   selector: 'app-home',
