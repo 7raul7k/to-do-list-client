@@ -1,37 +1,56 @@
 <header class="header-container">
-
+  <h1 class="header-title">To Do List</h1>
   <ul class="nav-container">
-    <button class="create-button">Create button</button>
+    <button class="create-button" routerLink="/add">Create button</button>
   </ul>
 </header>
 
+<div>
+  <h2>Loading State Example </h2>
 
+  <div *ngIf="(loadingState$ | async) === LoadingState.Loading;else loadedState">
+    <p--progressSpinner></p--progressSpinner>
+</div>
 
-<div class="cards-container" >
+  <ng-template #loadedState>
+    <ng-container *ngIf="(loadingState$ | async) === LoadingState.Success;else errorState">
+      <div class="cards-container" >
 
-  <div class="card-container" *ngFor="let todo of todolist">
+        <div class="card-container" *ngFor="let todo of todolist" >
 
-    <section class="title-container">
-      <label for="name" id="name">Name</label>
-      <h2 class="name">{{todo.name}}</h2>
-    </section>
-    <section class="title-container">
-      <label for="description" id="description">Description</label>
-      <h2 class="description">{{todo.description}}</h2>
-    </section>
-    <section class="title-container">
-      <label for="status" id="status">Status</label>
-      <h2 class="status">{{todo.status}}</h2>
-    </section>
-    <section class="title-container">
-      <label for="deadline" id="deadline">Deadline</label>
-      <h2 class="deadline">{{todo.deadline}}</h2>
-    </section>
-    <section class="title-container">
-      <label for="priority" id="priority">Priority</label>
-      <h2 class="priority">{{todo.priority}}</h2>
-    </section>
+          <section class="title-container" (click)="navigateToUpdate(todo)" >
+            <label for="name" id="name" >Name</label>
+            <h2 class="name">{{todo.name}}</h2>
+          </section>
+          <section class="title-container">
+            <label for="description" id="description">Description</label>
+            <h2 class="description">{{todo.description}}</h2>
+          </section>
+          <section class="title-container">
+            <label for="status" id="status">Status</label>
+            <h2 class="status">{{todo.status}}</h2>
+          </section>
+          <section class="title-container">
+            <label for="deadline" id="deadline">Deadline</label>
+            <h2 class="deadline">{{todo.deadline}}</h2>
+          </section>
+          <section class="title-container">
+            <label for="priority" id="priority">Priority</label>
+            <h2 class="priority">{{todo.priority}}</h2>
+          </section>
 
-  </div>
+        </div>
+
+      </div>
+
+    </ng-container>
+  </ng-template>
+
+  <ng-template #errorState>
+    <div class="error-container">
+      Error : eroare la incarcarea datelor
+    </div>
+
+  </ng-template>
 
 </div>

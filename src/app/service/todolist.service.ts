@@ -1,18 +1,21 @@
 import {Injectable, OnDestroy, OnInit} from '@angular/core';
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
-import {catchError, Observable, throwError} from "rxjs";
+import {BehaviorSubject, catchError, Observable, throwError} from "rxjs";
 import {ToDoListDTO} from "../models/api/ToDoListDTO";
+import {LoadingState} from "../models/LoadingState.enum";
 
 @Injectable({
   providedIn: 'root'
 })
 export class TodolistService implements OnInit, OnDestroy{
 
+  loadingStateSubject$ = new BehaviorSubject<LoadingState>(LoadingState.Idle);
 
   private url ="http://localhost:8080/api/v1/todo-list"
   constructor(private http : HttpClient) { }
 
   getTodoList():Observable<ToDoListDTO[]>{
+    this.loadingStateSubject$.next(LoadingState.Loading);
   return this.http.get<ToDoListDTO[]>(this.url + "/all").pipe(catchError(this.handleError));
   }
 
